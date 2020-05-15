@@ -3,6 +3,7 @@ from django.shortcuts import redirect
 from django.shortcuts import render
 from django.contrib.auth import login
 from django.contrib.auth import authenticate
+from django.contrib import messages
 
 def index(request):
     return render(request,"index.html", {
@@ -25,7 +26,10 @@ def login_view(request):
 
         if user:
             login(request,user)            
-            return redirect('index')            
+            messages.success(request,'Bienvenido {}'.format(user.username))
+            return redirect('index')
+        else:
+            messages.error(request,'Usuario o contraseña no validos')           
 
     return render(request,'users/login.html', {
 
