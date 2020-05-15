@@ -3,6 +3,11 @@ from django.shortcuts import render
 
 def index(request):
     return render(request,"index.html", {
-        'message':'Diego',
-        'anio':2020
+        'message':'Listado de Productos',
+        'titulo':'Productos',
+        'products': [
+            {'title':'Playera','price':5,'stock':True},
+            {'title':'Camisa','price':7,'stock':True},
+            {'title':'Mochila','price':20,'stock':False}
+        ]
     })

@@ -13,7 +13,16 @@
     <div class="container">
         <div class="row">
             <div class="col">
-                <h1>Hola desde un template, {{message}}, {{anio}}</h1>
+                <h1>{{message}}</h1>
+                <ul class="list-group">
+                    {% for product in products %}
+                    <li class="list-group-item">
+                        {{product.title}} {# Comentario #} {% if product.stock %}
+                        <span class="text-success">Disponible</span> {% else %}
+                        <span class="text-danger">No Disponible</span> {% endif %}
+                    </li>
+                    {% endfor %}
+                </ul>
             </div>
         </div>
     </div>
