@@ -3,5 +3,6 @@ from django.shortcuts import render
 
 def index(request):
     return render(request,"index.html", {
-        #context
+        'message':'Diego',
+        'anio':2020
     })
