@@ -11,3 +11,14 @@ def index(request):
             {'title':'Mochila','price':20,'stock':False}
         ]
     })
+
+def login(request):
+    print(request.method)
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+
+        print(username,password)
+    return render(request,'users/login.html', {
+
+    }) 
