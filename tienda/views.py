@@ -5,6 +5,7 @@ from django.contrib.auth import login
 from django.contrib.auth import logout
 from django.contrib.auth import authenticate
 from django.contrib import messages
+from django.contrib.auth.models import User
 from .forms import RegisterForm
 
 def index(request):
@@ -45,12 +46,15 @@ def logout_view(request):
 def register(request):
     form = RegisterForm(request.POST or None)
     if request.method == 'POST' and form.is_valid():
-        username = form.cleaned_data.get('usuario')
+        usuario = form.cleaned_data.get('usuario')
         correo = form.cleaned_data.get('correo')
         password = form.cleaned_data.get('password')
-        print(username,correo,password)
-    else:
-        print('Error')        
+
+        user = User.objects.create_user(usuario,correo,password)       
+        if user:
+            login(request,user)
+            messages.success(request,'Creado exitosamente')
+            return redirect('index')
 
     return render(request,'users/register.html', {
         'form':form
