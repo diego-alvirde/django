@@ -45,12 +45,9 @@ def logout_view(request):
 
 def register(request):
     form = RegisterForm(request.POST or None)
-    if request.method == 'POST' and form.is_valid():
-        usuario = form.cleaned_data.get('usuario')
-        correo = form.cleaned_data.get('correo')
-        password = form.cleaned_data.get('password')
+    if request.method == 'POST' and form.is_valid():      
 
-        user = User.objects.create_user(usuario,correo,password)       
+        user = form.save()       
         if user:
             login(request,user)
             messages.success(request,'Creado exitosamente')

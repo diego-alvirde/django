@@ -33,3 +33,10 @@ class RegisterForm(forms.Form):
 
         if cleaned_data.get('password2') != cleaned_data.get('password'):
             self.add_error('password2', 'La contraseña no coincide')
+
+    def save(self):
+        return User.objects.create_user(
+            self.cleaned_data.get('usuario'),
+            self.cleaned_data.get('correo'),
+            self.cleaned_data.get('password'),
+        )
