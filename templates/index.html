@@ -8,9 +8,8 @@ Index
 	<ul class="list-group">
 		{% for product in products %}
 		<li class="list-group-item">
-			{{product.title}} {# Comentario #} {% if product.stock %}
-			<span class="text-success">Disponible</span> {% else %}
-			<span class="text-danger">No Disponible</span> {% endif %}
+			{{product.title}} {# Comentario #}
+			<span class="text-success">${{product.price}}</span>
 		</li>
 		{% endfor %}
 	</ul>
