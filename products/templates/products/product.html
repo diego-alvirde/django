@@ -12,5 +12,8 @@
     Precio: <span class="text-danger">{{product.price}}</sapn>
   </div>
   <p>{{product.description}}</p>
+  <div>
+     {% include 'carts/snippets/add.html' %}
+  </div>
 </div>
 {% endblock  %}
